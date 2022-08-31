@@ -3,6 +3,8 @@
     background: linear-gradient(to right,rgb(100, 176, 253),rgb(10, 100, 132));
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
 
 }
@@ -42,10 +44,18 @@
 }
 @media screen and (max-width:600px){
     .card{
+        
         width: 80%;
         margin: 0%;margin-top: 20px;
-        
+        height:400px ;
     }
+    .card h2{
+        font-size: small;
+    }
+    .card p{
+        font-size: small;
+    }
+   
     .newsPage{
         width: 100%;
     }
