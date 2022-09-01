@@ -1,26 +1,36 @@
 import { useContext } from "react"
 import { myContext } from "./context";
 import style from './article.module.css'
-
+import { Link } from "react-router-dom";
 
 
 export default function Article(){
     const contextUse = useContext(myContext)
-    console.log(contextUse.sentNews,'article');
     
     return <div className={style.articleContainer}>
-        <div className={style.article}>
-            <img src={contextUse.sentNews.urlToImage} alt="" className={style.imgArticle} onClick={()=>{window.open(contextUse.sentNews.url)}} />
-            <h1 className="mt-5">{contextUse.sentNews.title}</h1>
+            <Link style={{textDecoration:'none'}} to='/'><h1 className='text-danger font-weight-bold'><i class="bi bi-camera2"></i> Global news </h1></Link>
+            <div className="bg-danger" style={{width:300,height:2}}></div>
             
-            <div className="ml-auto">
-                <h2 className="">by author: <span className="text-warning"> {contextUse.sentNews.author} </span></h2>
-                <h3>Published at:  {contextUse.sentNews.publishedAt}</h3>
+            <h1 className="mt-3 font-weight-bold">{contextUse.sentNews.title}</h1>
+            
+        <div  onClick={()=>{window.open(contextUse.sentNews.url)}} className={style.article}>
+            <div style={{position:'absolute',right:'0%',top:0}} className={style.iconBox}>
+                    <h3 className={style.iconTitle}>READ MORE</h3>
+                 <div className={style.iconLittleBox}>
+                     <i className={`bi bi-book `}></i>
+                 </div>
             </div>
-            <p>{contextUse.sentNews.content}</p>
+            <img src={contextUse.sentNews.urlToImage} alt="" className={style.imgArticle} />
+            <h3 className="w-75 text-white" style={{zIndex:1,position:'absolute',bottom:0,left:'2%'}} >{contextUse.sentNews.description}</h3>
+            <div  style={{height:'100%',width:'100%',background:'linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.800))',position:'absolute',top:'0',left:'0'}}></div>
             
         </div>
+            <p className="mt-4">{contextUse.sentNews.content}</p>
         
 
+            <div className={style.info}>
+                <h2 className="">By author: <span className="text-warning"> {contextUse.sentNews.author} </span></h2>
+                <h3>Published at:  {contextUse.sentNews.publishedAt}</h3>
+            </div>
     </div>
 }

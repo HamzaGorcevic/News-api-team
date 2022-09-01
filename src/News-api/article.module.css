@@ -1,24 +1,82 @@
 .articleContainer{
-    background-color: aqua;
+    background-color: white;
     height: 99vh;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     padding: 50px;
+    flex-direction: column;
+    
 }
 .article{
-    padding: 5px;
+    position: relative;
+
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     width: 80%;
     height: 70%;
+    background-color: orange;
+    
+    
 
 }
 .imgArticle{
-    border-radius: 20px;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    bottom: 0;
     object-fit: cover;
+    width: 100%;
+    height: 99%;
     cursor: pointer;
+}
+
+.iconBox{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100px;
+    height: 100px;
+    font-size: 60px;
+    position: relative;
+    background-color: orange;
+    z-index: 2;
+
+    
+}
+.iconLittleBox{
+    position: absolute;
+    
+    right: 10px;
+    top: 5px;
+    
+    width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    color: white;
+    
+}
+
+.article:hover .iconBox{
+    transition: all 1s ease;
+    
+    width: 300px;
+
+}
+.article:hover .iconLittleBox{
+    border: 4px solid white;
+    
+}
+.iconTitle{
+    opacity: 0;
+    color: rgb(0, 0, 0);
+}
+.article:hover .iconTitle{
+    opacity: 1;
+    transition: all 1s ;
+    transition-duration: 2.5s;
+}
+.info{
+    z-index: 2;
 }
