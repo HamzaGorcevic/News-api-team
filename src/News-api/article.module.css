@@ -80,3 +80,16 @@
 .info{
     z-index: 2;
 }
+
+@media screen and (max-width:1000px) {
+    .articleContainer{
+        font-size: 20px;
+        
+    }
+    .article{
+        object-fit: cover;
+        font-size: 20px;
+    }
+    
+
+}

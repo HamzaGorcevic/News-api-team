@@ -15,11 +15,12 @@ export default function Home(){
     const [filter,setFilter] = useState('')
     const[fromDate,setFormDate] = useState('')
     const[toDate,setToDate] = useState('')
-    const[show,setShow] = useState(false)
-    const {register,handleSubmit,trigger} = useForm()
+   
+    const[page,setPage] = useState(20)
+    const {register,handleSubmit} = useForm()
     
    
-    const key = 'be78ec06cbf7435697d774d947488f4b'
+    const key = 'c9ba4a8cb8c144cca633450a23b9c55b'
     
 
     const Headlines =  `https://newsapi.org/v2/top-headlines?country=us&apiKey=${key}`
@@ -29,22 +30,31 @@ export default function Home(){
     
 
     useEffect(()=>{
-        const options=`https://newsapi.org/v2/everything?q=${name}&${filter?`sortBy=${filter}&`:''}${fromDate ? `from=${fromDate}&to=${toDate}&`:''}apiKey=${key}`
+        const options=`https://newsapi.org/v2/everything?q=${name}&${filter?`sortBy=${filter}&`:''}${fromDate ? `from=${fromDate}&to=${toDate}&`:''}${page?`pageSize=${page}&`:''}apiKey=${key}`
             setAppear(options)
-            console.log(options);
+
             axios.get(appear).then((response)=>{
-    
-                setNews(response.data.articles)
+                
+                if(response.data.articles.length > 20){
+                    
+                    setNews(response.data.articles)
+                   
+                }else{
+                    setNews(response.data.articles)
+                }
+
                 
     
             })
         
 
-    },[name,appear,filter,fromDate,toDate])
+    },[name,appear,filter,fromDate,toDate,page])
     
+
+
     function selectChange(elm){
         if(name !== ''){
-            setFilter(elm.target.value)
+            setFilter(elm.target.innerText)
         }
     }
 
@@ -54,29 +64,43 @@ export default function Home(){
             setToDate(data.to)
         
     }
+
+   
     
     return <div className={`${style.newsContainer}`}>
-        <div className="bg-danger w-100 d-flex align-items-center justify-content-center flex-column" style={{position:'relative'}}>
+        <div className="bg-danger w-100 d-flex align-items-center justify-content-center " style={{position:'relative'}}>
             
         <div>
             <h1 className={style.newsTitle}><i class="bi bi-camera2"></i> Global news </h1>
-           {name !=='' ?<div> <select name="" id="" onChange={selectChange}>
-                <option  defaultValue={''} >Chose filter</option>
-                <option value={'popularity'} >popularity</option>
-                <option value="publishedAt">publishedAt</option>
-                <option value="relevancy">relevancy</option>
-                <option value={''}>Default option</option>
-           </select>
-           <form action="" className={style.formDates} onSubmit={handleSubmit(getDates)}>
+           {name !=='' ?<div> 
+
             
-            <button onClick={()=>{setShow(!show)}}>show advanced</button>
-            <input className={`${style.datum} ${show ?'':'d-none'}`}  type="date" name="from" {...register('from')}  />
-            <input className={`${style.datum} ${show ?'':'d-none'}`} type="date" name="to"{...register('to')} />
-            <button className={style.searchBtn} onClick={()=>{
-                trigger(['from','to']);
+            <div class="dropleft">
+                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Show filter
+                </button>
                 
-            }}>Search by date</button>
-        </form>
+                <div className={`dropdown-menu bg-dark p-2 rounded`}aria-labelledby="dropdownMenuButton">
+                <h4 className={style.filterItem} onClick={selectChange} for='popularity'>Popularity</h4>
+                <h4 className={style.filterItem} onClick={selectChange} htmlFor="publishedAt">PublishedAt</h4>
+                <h4 className={style.filterItem} onClick={selectChange} htmlFor="relevancy">Relevancy</h4>
+                
+
+            <form  action="" className={style.formDates} onSubmit={handleSubmit(getDates)}>
+                <input className={`${style.datum}`}  type="date" name="from" {...register('from')}  />
+                <input className={`${style.datum}`} type="date" name="to"{...register('to')} />
+                <input type="submit" className="btn btn-danger" />
+        
+            </form>
+                </div>
+                </div>
+
+                
+                
+                
+
+           
+
            </div>
            :''}
            
@@ -85,9 +109,9 @@ export default function Home(){
         </div>
                 
         <div class="input-group my-5 w-50">
-        <input onChange={(e)=>{setInputValue(e.target.value)}} type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+        <input onChange={(e)=>{setInputValue(e.target.value)}} type="text" className={`form-control ${style.searchBar}`} placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
         <div class="input-group-append">
-            <button class="btn btn-outline-warning" onClick={()=>{setName(inputValue)}} type="button">Search</button>
+            <button class="btn btn-primary" onClick={()=>{setName(inputValue)}} type="button"><i class="bi bi-search"></i> Search</button>
         </div>
         </div>
             
@@ -100,12 +124,12 @@ export default function Home(){
                 return <div key={index} className={style.card}>
                     
                     <img onClick={()=>{window.open(el.url)}} src={el.urlToImage ? el.urlToImage : 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/400px-Question_mark_%28black%29.svg.png'} className={style.cardImg} />
-                    <h5 >{el.title}</h5>
-                    <p>{el.description?.slice(0,100)} ..</p>
+                    <h5 >{el.title.slice(0,60)}...</h5>
+                    <p>{el.description?.slice(0,100)} ...</p>
                     <Link style={{position:'absolute',right:'2%'}}  to={'/article'}  className="btn btn-primary w-25" onClick={()=>{contextUse.setSentNews(el)}}>Read </Link     >
                 </div>
             })}
         </div>
-        <button onClick={()=>{}} className="btn btn-outline-danger my-5">Load more</button>
+        <button className="btn btn-primary w-50 my-5" onClick={()=>{setPage(page+20)}}>Load more</button>
     </div>
 }

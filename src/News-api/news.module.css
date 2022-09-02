@@ -46,33 +46,8 @@
     opacity: 1;
     cursor: pointer;
 }
-@media screen and (max-width:800px){
-    .card{
-        
-        width: 80%;
-        margin: 0%;margin-top: 20px;
-        height:400px ;
-    }
-    .card h2{
-        font-size: small;
-    }
-    .card p{
-        font-size: small;
-    }
-   
-    .newsPage{
-        width: 100%;
-    }
-}
 
 
-.searchBar{
-    width: 56%;
-    height: 50px;
-    border-radius: 10px;
-    outline: none;
-    border: 1px solid blueviolet;
-}
 
 .newsTitle{
     color: white;
@@ -85,33 +60,64 @@
     width: 100px;
     height: 50px;
     color: white;
+    text-shadow: 2px 2px 2px black;
     border: none;
     background: none;
-    font-size: 25px;
+    font-size: 20px;
+    
 }
 
 .datum[type="date"]::-webkit-inner-spin-button,
 .datum[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
-.datum{
-    
-}
+
 .formDates{
-    position: absolute;
-    right: 5%;
     width: 300px;
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    flex-direction: column;
+    
 }
-.searchBtn{
-    width: 100px;
-    height: 50px;
-    background-color: red;
 
+.searchBar{
+
+}
+
+
+.filter{
+    font-size: 25px;
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+}
+.filterItem{
+    cursor: pointer;
+    background-color: aqua;
+    color: rgb(154, 146, 146);
+    width: 60%;
     border-radius: 10px;
-    color: white;
-    border: none;
+    padding: 2px;
+    
+}
+@media screen and (max-width:1000px){
+    .card{
+        
+        width: 80%;
+        margin: 0%;margin-top: 20px;
+        height:400px ;
+    }
+    .card h2{
+        font-size: small;
+    }
+    
+    .card p{
+        font-size: small;
+    }
+   
+    .newsPage{
+        width: 100%;
+    }
+    .searchBar{width: 80%;}
+    
 }
