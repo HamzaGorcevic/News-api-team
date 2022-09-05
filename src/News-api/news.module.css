@@ -80,7 +80,8 @@
     
 }
 
-.searchBar{
+.searchBtn{
+
 
 }
 
@@ -100,6 +101,9 @@
     padding: 2px;
     
 }
+.filterItem:active{
+    background-color: red;
+}
 @media screen and (max-width:1000px){
     .card{
         
@@ -118,6 +122,14 @@
     .newsPage{
         width: 100%;
     }
-    .searchBar{width: 80%;}
+    .searchBar{width: 600px;}
+    .searchBtn{
+        width: 50px;
+        color: #0d6efd;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
     
 }
