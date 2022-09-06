@@ -21,10 +21,7 @@ export default function Home() {
   const { register, handleSubmit } = useForm();
 
   const key = "c9ba4a8cb8c144cca633450a23b9c55b";
-  useEffect(() => {
-    setNews([]);
-    setPage(1);
-  }, [filter, name]);
+
   useEffect(() => {
     if (name) {
       axios
@@ -57,6 +54,10 @@ export default function Home() {
         });
     }
   }, [name, filter, fromDate, toDate, page]);
+
+  useEffect(() => {
+    setNews([]);
+  }, [filter]);
 
   function selectChange(elm) {
     if (name !== "") {
@@ -166,6 +167,8 @@ export default function Home() {
               className={`${style.searchBtn} btn btn-primary`}
               onClick={() => {
                 if (inputValue !== "") {
+                  setNews([]);
+                  setPage(1);
                   setName(inputValue);
                 }
               }}
