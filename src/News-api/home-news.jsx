@@ -16,11 +16,15 @@ export default function Home() {
   const [fromDate, setFormDate] = useState("");
   const [toDate, setToDate] = useState("");
 
-  const [page, setPage] = useState(20);
+  const [page, setPage] = useState(1);
+
   const { register, handleSubmit } = useForm();
 
-  const key = "1a32f1bbd1614e048ae04256b352bb21";
-
+  const key = "c9ba4a8cb8c144cca633450a23b9c55b";
+  useEffect(() => {
+    setNews([]);
+    setPage(1);
+  }, [filter, name]);
   useEffect(() => {
     if (name) {
       axios
@@ -28,33 +32,31 @@ export default function Home() {
           params: {
             q: name,
             sortBy: filter,
-            pageSize: page,
+            pageSize: 20,
+            page: page,
             from: fromDate,
             to: toDate,
             apiKey: key,
           },
         })
         .then((response) => {
-          setNews(response.data.articles);
+          setNews((arr) => [...arr, ...response.data.articles]);
         });
     } else {
       axios
         .get("https://newsapi.org/v2/top-headlines", {
           params: {
             country: "us",
-            pageSize: page,
+            pageSize: 20,
+            page: page,
             apiKey: key,
           },
         })
         .then((response) => {
-          setNews(response.data.articles);
+          setNews([...news, ...response.data.articles]);
         });
     }
   }, [name, filter, fromDate, toDate, page]);
-
-  useEffect(() => {
-    setPage(20);
-  }, [name]);
 
   function selectChange(elm) {
     if (name !== "") {
@@ -190,7 +192,7 @@ export default function Home() {
                 }
                 className={style.cardImg}
               />
-              <h5>{el.title.slice(0, 60)}...</h5>
+              <h5>{el.title?.slice(0, 60)}...</h5>
               <p className="mb-5">{el.description?.slice(0, 100)} ...</p>
               <Link
                 style={{ position: "absolute", right: "2%" }}
@@ -210,7 +212,7 @@ export default function Home() {
       <button
         className="btn btn-primary w-50 my-5"
         onClick={() => {
-          setPage(page + 20);
+          setPage(page + 1);
         }}
       >
         Load more
