@@ -1,135 +1,126 @@
-.newsContainer{
-    height: auto;
-    background: linear-gradient(to right,rgb(100, 176, 253),rgb(10, 100, 132));
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.newsContainer {
+  height: auto;
+  background: linear-gradient(to right, rgb(100, 176, 253), rgb(10, 100, 132));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.newsPage {
+  margin-top: 200px;
+  background: linear-gradient(to right, rgb(100, 176, 253), rgb(10, 100, 132));
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  border-radius: 10px;
+  position: relative;
+  width: 30%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 6px;
+  margin: 20px;
+  background-color: white;
+  opacity: 0.8;
+  transform: scale(1);
+  overflow: hidden;
+}
+.card:hover {
+  transform: scale(1.1);
+  opacity: 1;
+  transition: all 1s ease;
+}
+.cardImg {
+  border-radius: 10px;
+  width: 100%;
 
+  border: 2px black solid;
+  margin-bottom: auto;
 
+  height: 230px;
 }
-.newsPage{
-    margin-top: 200px;
-    background: linear-gradient(to right,rgb(100, 176, 253),rgb(10, 100, 132));
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.card{
-    border-radius: 10px;
-    position: relative;
-    width: 30%;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 6px;
-    margin: 20px;
-    background-color: white;  
-    opacity: 0.8;  
-    transform: scale(1);
-    overflow: hidden;
-}
-.card:hover{
-    transform: scale(1.1);
-    opacity: 1;
-    transition: all 1s ease;
-}
-.cardImg{
-    border-radius: 10px;
-    width:100%;height:65%;border:2px black solid;
-    margin-bottom:auto;
-    object-fit: cover;
-}
-.cardImg:hover{
-    opacity: 1;
-    cursor: pointer;
+.cardImg:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
-
-
-.newsTitle{
-    color: white;
-    font-weight: 1000;
-    position: absolute;
-    left: 2%;
-    top: 1%;
+.newsTitle {
+  color: white;
+  font-weight: 1000;
+  position: absolute;
+  left: 2%;
+  top: 1%;
 }
-.datum{
-    width: 100px;
-    height: 50px;
-    color: white;
-    text-shadow: 2px 2px 2px black;
-    border: none;
-    background: none;
-    font-size: 20px;
-    
+.datum {
+  width: 100px;
+  height: 50px;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+  border: none;
+  background: none;
+  font-size: 20px;
 }
 
 .datum[type="date"]::-webkit-inner-spin-button,
 .datum[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
+  display: none;
 }
 
-.formDates{
-    width: 300px;
+.formDates {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.filter {
+  font-size: 25px;
+  display: flex;
+  background-color: black;
+  justify-content: space-between;
+}
+.filterItem {
+  cursor: pointer;
+  background-color: aqua;
+  color: rgb(154, 146, 146);
+  width: 60%;
+  border-radius: 10px;
+  padding: 2px;
+}
+.filterItem:active {
+  background-color: red;
+}
+@media screen and (max-width: 1000px) {
+  .card {
+    width: 80%;
+    margin: 0%;
+    margin-top: 20px;
+    height: 400px;
+  }
+  .card h2 {
+    font-size: small;
+  }
+
+  .card p {
+    font-size: small;
+  }
+
+  .newsPage {
+    width: 100%;
+  }
+  .searchBar {
+    width: 600px;
+  }
+  .searchBtn {
+    width: 50px;
+    color: #0d6efd;
+    overflow: hidden;
     display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    
-}
-
-.searchBtn{
-
-
-}
-
-
-.filter{
-    font-size: 25px;
-    display: flex;
-    background-color: black;
-    justify-content: space-between;
-}
-.filterItem{
-    cursor: pointer;
-    background-color: aqua;
-    color: rgb(154, 146, 146);
-    width: 60%;
-    border-radius: 10px;
-    padding: 2px;
-    
-}
-.filterItem:active{
-    background-color: red;
-}
-@media screen and (max-width:1000px){
-    .card{
-        
-        width: 80%;
-        margin: 0%;margin-top: 20px;
-        height:400px ;
-    }
-    .card h2{
-        font-size: small;
-    }
-    
-    .card p{
-        font-size: small;
-    }
-   
-    .newsPage{
-        width: 100%;
-    }
-    .searchBar{width: 600px;}
-    .searchBtn{
-        width: 50px;
-        color: #0d6efd;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-    }
-    
+    align-items: center;
+    justify-content: flex-start;
+  }
 }

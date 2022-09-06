@@ -1,95 +1,97 @@
-.articleContainer{
-    background-color: white;
-    height: 99vh;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 50px;
-    flex-direction: column;
-    
+.articleContainer {
+  height: 99vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 50px;
+  flex-direction: column;
 }
-.article{
-    position: relative;
+.article {
+  position: relative;
 
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 80%;
-    height: 70%;
-    background-color: orange;
-    
-    
-
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 80%;
+  height: 70%;
+  background-color: orange;
 }
-.imgArticle{
-    position: absolute;
-    bottom: 0;
+.imgArticle {
+  position: absolute;
+  bottom: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 99%;
+  cursor: pointer;
+}
+
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100px;
+  height: 100px;
+  font-size: 60px;
+  position: relative;
+  background-color: orange;
+  z-index: 2;
+}
+.iconLittleBox {
+  position: absolute;
+
+  right: 10px;
+  top: 5px;
+
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+  color: white;
+}
+
+.article:hover .iconBox {
+  transition: all 1s ease;
+
+  width: 300px;
+}
+.article:hover .iconLittleBox {
+  border: 4px solid white;
+}
+.iconTitle {
+  opacity: 0;
+  color: rgb(0, 0, 0);
+}
+.article:hover .iconTitle {
+  opacity: 1;
+  transition: all 1s;
+  transition-duration: 2.5s;
+}
+.info {
+  z-index: 2;
+}
+.articleTitle {
+}
+
+@media screen and (max-width: 1000px) {
+  .articleContainer {
+    font-size: 20px;
+  }
+  .article {
     object-fit: cover;
+    width: 80%;
+    height: 400px;
+    font-size: 10px;
     width: 100%;
-    height: 99%;
-    cursor: pointer;
-}
+  }
 
-.iconBox{
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    width: 100px;
-    height: 100px;
-    font-size: 60px;
-    position: relative;
-    background-color: orange;
-    z-index: 2;
-
-    
-}
-.iconLittleBox{
-    position: absolute;
-    
-    right: 10px;
-    top: 5px;
-    
-    width: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 90px;
-    color: white;
-    
-}
-
-.article:hover .iconBox{
-    transition: all 1s ease;
-    
-    width: 300px;
-
-}
-.article:hover .iconLittleBox{
-    border: 4px solid white;
-    
-}
-.iconTitle{
-    opacity: 0;
-    color: rgb(0, 0, 0);
-}
-.article:hover .iconTitle{
-    opacity: 1;
-    transition: all 1s ;
-    transition-duration: 2.5s;
-}
-.info{
-    z-index: 2;
-}
-
-@media screen and (max-width:1000px) {
-    .articleContainer{
-        font-size: 20px;
-        
-    }
-    .article{
-        object-fit: cover;
-        font-size: 20px;
-    }
-    
-
+  .articleTitle {
+    font-size: 15px;
+  }
+  .description {
+    font-size: small;
+  }
+  .iconBox {
+    display: none;
+  }
 }
